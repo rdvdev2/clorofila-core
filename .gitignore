@@ -1,0 +1,4 @@
+.*
+!.gitignore
+vunit_out/
+dvt_build.log

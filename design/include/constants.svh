@@ -1,0 +1,4 @@
+`define WORD_WIDTH 32
+`define WORD_MASK `WORD_WIDTH-1:0
+
+`define REG_COUNT 16
