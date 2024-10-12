@@ -2,3 +2,10 @@
 `define WORD_MASK `WORD_WIDTH-1:0
 
 `define REG_COUNT 16
+`define REG_ADDR_WIDTH $clog2(`REG_COUNT)
+`define REG_ADDR_MASK `REG_ADDR_WIDTH-1:0
+
+`define ILEN 32
+`define INST_MASK `ILEN-1:0
+`define IMMED_WIDTH 32
+`define IMMED_MASK `IMMED_WIDTH-1:0

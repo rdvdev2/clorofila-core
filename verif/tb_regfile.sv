@@ -18,7 +18,7 @@ module tb_regfile;
     logic [WIDTH-1:0] b;
     logic [WIDTH-1:0] d;
 
-    regfile #(.COUNT(REG_COUNT)) DUT (.*);
+    regfile #(.WIDTH(WIDTH), .REG_COUNT(REG_COUNT)) DUT (.*);
 
     always #`CLOCK_SEMIPERIOD clk=~clk;
 

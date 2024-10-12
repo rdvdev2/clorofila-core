@@ -2,8 +2,8 @@
 
 module regfile #(
     parameter WIDTH = `WORD_WIDTH,
-    parameter COUNT,
-    localparam ADDR_WIDTH = $clog2(COUNT)
+    parameter REG_COUNT,
+    localparam ADDR_WIDTH = $clog2(REG_COUNT)
 ) (
     input logic clk,
     input logic rst_n,
@@ -17,7 +17,7 @@ module regfile #(
     output logic [WIDTH-1:0] b
 );
 
-logic [WIDTH-1:0] regs [COUNT-1:0];
+logic [WIDTH-1:0] regs [REG_COUNT-1:0];
 
 always_ff @(posedge clk)
 begin
