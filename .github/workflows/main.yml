@@ -9,12 +9,9 @@ on:
 jobs:
   container-job:
     runs-on: self-hosted
-    container: goldensniper/modelsim-docker
+    container: modelsim:latest
     steps:
-    - run: yum update -y
-    - run: curl –sL https://rpm.nodesource.com/setup_10.x | sudo bash -
-    - run: yum install -y nodejs
-  
+    
     - uses: actions/checkout@v2
   
     - run: ./run.py -p $(nproc)
