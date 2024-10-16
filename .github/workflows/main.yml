@@ -5,12 +5,11 @@ on:
   pull_request:
 
 jobs:
-  action:
+  container-job:
     runs-on: self-hosted
+    container: modelsim:latest
     steps:
   
     - uses: actions/checkout@v2
   
-    - uses: VUnit/vunit_action@master
-      with:
-        cmd: ./run.py -p $(nproc)
+    - run: ./run.py -p $(nproc)
