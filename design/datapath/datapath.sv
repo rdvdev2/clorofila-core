@@ -5,9 +5,11 @@ import datapath_control_types::*;
 module datapath (
 	input logic clk,
 	input logic rst_n,
-	memory_port mem_port,
-	datapath_control control
+	memory_port.datapath mem_port,
+	datapath_control.datapath control
 );
+
+logic [`WORD_MASK] mem_rd_extended;
 
 logic [`WORD_MASK] regfile_a;
 logic [`WORD_MASK] regfile_b;
@@ -16,8 +18,9 @@ logic [`WORD_MASK] regfile_d;
 // Regfile muxs
 always_comb
 begin
-	// unique case (control.regfile_d)
-	// endcase
+	unique case (control.regfile_d)
+		REGFILE_D_MEMORY: regfile_d = mem_rd_extended;
+	endcase
 end
 
 regfile regfile(
@@ -70,6 +73,20 @@ begin
 
 	mem_port.width = control.mem_width;
 	mem_port.data_wr = alu_w;
+end
+
+memory_extension memory_extension (
+	.data_rd(mem_port.data_rd),
+	.width(control.mem_width),
+	.data_signed(control.mem_signed),
+	.data_extended(mem_rd_extended)
+);
+
+// Signals sent to the control module
+always_comb
+begin
+	control.mem_rd = mem_port.data_rd;
+	control.alu_w = alu_w;
 end
 
 endmodule;

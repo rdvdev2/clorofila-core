@@ -15,4 +15,8 @@ package datapath_control_types;
 		MEM_ADDR_PC
 	} mem_addr_t;
 
+	typedef enum {
+		REGFILE_D_MEMORY
+	} regfile_d_t;
+
 endpackage;
