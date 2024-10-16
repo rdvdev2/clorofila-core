@@ -1,0 +1,16 @@
+name: Test with VUnit
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  action:
+    runs-on: self-hosted
+    steps:
+  
+    - uses: actions/checkout@v2
+  
+    - uses: VUnit/vunit_action@master
+      with:
+        cmd: ./run.py -p $(nproc)
