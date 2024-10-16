@@ -14,4 +14,4 @@ jobs:
     
     - uses: actions/checkout@v1
   
-    - run: ./run.py -p $(nproc)
+    - run: pip install -r requirements.txt && ./run.py -p $(nproc)
