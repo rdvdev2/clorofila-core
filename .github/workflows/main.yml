@@ -9,7 +9,7 @@ on:
 jobs:
   run-tests:
     runs-on: self-hosted
-    container: modelsim:latest
+    container: docker.io/library/modelsim:latest
     steps:
     
     - uses: actions/checkout@v2
