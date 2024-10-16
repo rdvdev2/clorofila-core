@@ -2,12 +2,14 @@ name: Test with VUnit
 
 on:
   push:
+    branches:
+    - main
   pull_request:
 
 jobs:
   container-job:
     runs-on: self-hosted
-    container: modelsim:latest
+    container: goldensniper/modelsim-docker
     steps:
   
     - uses: actions/checkout@v2
