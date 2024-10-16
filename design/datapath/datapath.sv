@@ -23,7 +23,9 @@ begin
 	endcase
 end
 
-regfile regfile(
+regfile #(
+	.REG_COUNT(`REG_COUNT)
+) regfile (
 	.clk,
 	.rst_n,
 	.addr_a(control.rs1),
@@ -32,7 +34,7 @@ regfile regfile(
 	.we_d(control.regfile_we),
 	.d(regfile_d),
 	.a(regfile_a),
-	.b(regfile_a)
+	.b(regfile_b)
 );
 
 logic [`WORD_MASK] alu_x;
