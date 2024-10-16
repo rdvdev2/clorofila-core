@@ -12,7 +12,7 @@ jobs:
     container: goldensniper/modelsim-docker
     steps:
 
-    - run: yum install -y nodejs
+    - run: yum update -y && yum install -y nodejs
   
     - uses: actions/checkout@v2
   
