@@ -2,15 +2,16 @@ name: Test with VUnit
 
 on:
   push:
+    branches:
+    - main
   pull_request:
 
 jobs:
-  action:
+  run-tests:
     runs-on: self-hosted
+    container: localhost:5000/modelsim:latest
     steps:
+    
+    - uses: actions/checkout@v1
   
-    - uses: actions/checkout@v2
-  
-    - uses: VUnit/vunit_action@master
-      with:
-        cmd: ./run.py -p $(nproc)
+    - run: pip3 install -r requirements.txt && PATH=/modelsim/modelsim_ase/bin/:$PATH ./run.py -p $(nproc)
