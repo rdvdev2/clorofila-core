@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v4
-    - uses: veryl-lang/setup-verilator@v1
+    - uses: v0xnihili/install-verilator-action@main
       with:
         version: 5.028
     - name: Run Tox tests
