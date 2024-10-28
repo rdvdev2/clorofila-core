@@ -6,12 +6,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Install deps
-      run: sudo apt update && sudo apt install verilator
+      run: sudo apt update && sudo apt install verilator pipx && pipx install tox
     - name: Run Tox tests
       id: test
-      uses: fedora-python/tox-github-action@main
-      with:
-        tox_env: ${{ matrix.tox_env }}
+      run: tox -e ${{ matrix.tox_env }}
     strategy:
       matrix:
         tox_env: [verilator]
