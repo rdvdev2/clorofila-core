@@ -2,7 +2,8 @@ requires = ["tox>=4.0"]
 env_list = ["verilator"]
 
 [env_run_base]
-description = "run cocotb testbench"
+description = "run cocotb testbench on {env_name}"
+base_python = ["python3.12"]
 deps = [
 	"cocotb",
 	"pytest",
