@@ -5,9 +5,8 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v4
-    - uses: v0xnihili/install-verilator-action@main
-      with:
-        version: 5.028
+    - name: Install verilator
+      run: apt update && apt install verilator
     - name: Run Tox tests
       id: test
       uses: fedora-python/tox-github-action@main
