@@ -6,7 +6,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Install deps
-      run: sudo apt update && sudo apt install verilator pipx && pipx install tox
+      run: sudo apt update && sudo apt install python3.12 verilator pipx && pipx install tox
     - name: Run Tox tests
       id: test
       run: tox -e ${{ matrix.tox_env }}
