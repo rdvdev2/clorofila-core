@@ -1,0 +1,14 @@
+requires = ["tox>=4.0"]
+env_list = ["verilator"]
+
+[env_run_base]
+description = "run cocotb testbench"
+deps = [
+	"cocotb",
+	"pytest",
+	"pytest-xdist"
+]
+commands = [["pytest", "-n", "auto", "--verbose"]]
+
+[env.verilator]
+set_env = { SIM = "verilator" }
