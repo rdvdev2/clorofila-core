@@ -26,10 +26,20 @@ def test_cocotb_testbench(test_module, runner):
 	test_config = importlib.import_module(test_module).__doc__
 	test_config = tomllib.loads(test_config)
 	test_config.setdefault('parameters', dict())
+	test_config.setdefault('defines', dict())
+
+	if test_config.get('wrap_top'):
+		test_config['sources'].append('verif/templates/top_wrapper.sv')
+		test_config['defines']['TOP_WRAPPER_NAME'] = test_config['dut'] + '_wrapped'
+		test_config['defines']['TOP_WRAPPER_PARAMETERS'] = test_config['wrap_top_parameters']
+		test_config['defines']['TOP_WRAPPER_DECLARATIONS'] = test_config['wrap_top_declarations']
+		test_config['defines']['TOP_WRAPPER_TOP'] = test_config['dut']
+		test_config['dut'] = test_config['defines']['TOP_WRAPPER_NAME']
 	
 	runner.build(
 		sources=test_config['sources'],
 		includes=[proj_path / 'design' / 'include'],
+		defines=test_config['defines'],
 		parameters=test_config['parameters'],
 		hdl_toplevel=test_config['dut'],
 		build_dir=test_path / 'build',
