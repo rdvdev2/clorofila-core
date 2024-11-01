@@ -17,9 +17,9 @@ def runner(simulator):
 	return get_runner(simulator)
 
 
-def test_cocotb_testbench(test_module, runner, tmp_path):
+def test_cocotb_testbench(test_module, runner):
 	proj_path = Path(__file__).parent
-	test_path = tmp_path
+	test_path = proj_path / 'verif_out' / test_module
 
 	test_module = f'verif.{test_module}'
 	
@@ -32,15 +32,15 @@ def test_cocotb_testbench(test_module, runner, tmp_path):
 		includes=[proj_path / 'design' / 'include'],
 		parameters=test_config['parameters'],
 		hdl_toplevel=test_config['dut'],
-		build_dir=tmp_path / 'build',
+		build_dir=test_path / 'build',
 	)
 
 	runner.test(
 		test_module=test_module,
 		hdl_toplevel=test_config['dut'],
 		parameters=test_config['parameters'],
-		build_dir=tmp_path / 'build',
-		test_dir=tmp_path / 'test',
+		build_dir=test_path / 'build',
+		test_dir=test_path / 'test',
 	)
 
 
