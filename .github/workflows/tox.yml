@@ -1,0 +1,15 @@
+name: Run tests with tox
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install deps
+      run: sudo apt update && sudo apt install python3.12 verilator pipx && pipx install tox
+    - name: Run Tox tests
+      id: test
+      run: tox -e ${{ matrix.tox_env }}
+    strategy:
+      matrix:
+        tox_env: [verilator]

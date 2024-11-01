@@ -10,7 +10,7 @@ interface memory_port(input logic clk);
 	logic [`WORD_MASK] data_wr;
 	logic [`WORD_MASK] data_rd;
 
-	modport memory (input valid, input we, input addr, input width, input data_wr, output data_rd, clk, input should_read, input should_write);
+	modport memory (input valid, input we, input addr, input width, input data_wr, output data_rd, clk, import should_read, import should_write);
 
 	modport datapath (output valid, output we, output addr, output width, output data_wr, input data_rd, clk);
 

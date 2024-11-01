@@ -1,4 +1,5 @@
 .*
 !.gitignore
-vunit_out/
 dvt_build.log
+__pycache__/
+verif_out/
